@@ -1,6 +1,6 @@
-@ChessAPI_HostAddress = http://localhost:5234
+@ChessAPI_HostAddress = https://localhost:7281
 
-GET {{ChessAPI_HostAddress}}/weatherforecast/
+GET {{ChessAPI_HostAddress}}/api/Chess/big_chunguspl
 Accept: application/json
 
 ###
