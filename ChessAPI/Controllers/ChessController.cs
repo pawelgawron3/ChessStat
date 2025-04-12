@@ -24,9 +24,9 @@ public class ChessController : ControllerBase
         // Tworzymy zapytanie HTTP
         var requestMessage = new HttpRequestMessage(HttpMethod.Get, url);
         requestMessage.Headers.Add("Accept", "application/json");
-        requestMessage.Headers.Add("User-Agent", "ChessInfoAPI/1.0 (http://localhost:7068)"); // Wymagana identyfikacja przez API chess.com
+        requestMessage.Headers.Add("User-Agent", "ChessInfoAPI/1.0 (http://localhost:7281)"); // Wymagana identyfikacja przez API chess.com
 
-        var response = await _httpClient.GetAsync(url);
+        var response = await _httpClient.SendAsync(requestMessage);
 
         if (response.IsSuccessStatusCode)
         {
