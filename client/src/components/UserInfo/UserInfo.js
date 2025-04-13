@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "./UserInfo.css";
 
 const ChessUserInfo = () => {
   const [username, setUsername] = useState("");
@@ -35,7 +36,7 @@ const ChessUserInfo = () => {
       {error && <p style={{ color: "red" }}>{error}</p>}
 
       {userInfo && (
-        <div>
+        <div className="userData">
           <h2>User Info:</h2>
           <p>
             <strong>Chess.com account:</strong> {userInfo.url}
