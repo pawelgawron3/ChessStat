@@ -36,21 +36,46 @@ const ChessUserInfo = () => {
       {error && <p style={{ color: "red" }}>{error}</p>}
 
       {userInfo && (
-        <div className="userData">
-          <h2>User Info:</h2>
-          <p>
-            <strong>Chess.com account:</strong> {userInfo.url}
-          </p>
-          <p>
-            <strong>Username:</strong> {userInfo.username}
-          </p>
-          <p>
-            <strong>Country:</strong> {userInfo.country}
-          </p>
-          <p>
-            <strong>Followers:</strong> {userInfo.followers}
-          </p>
-          <img src={userInfo.avatar} alt={userInfo.username} width="100" />
+        <div>
+          <div className="userInfoHeader">
+            <h1>User Info:</h1>
+          </div>
+          <div className="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>URL</th>
+                  <th>Username</th>
+                  <th>Country</th>
+                  <th>Followers</th>
+                  <th>Image</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <a
+                      href={userInfo.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {userInfo.url}
+                    </a>
+                  </td>
+                  <td>{userInfo.username}</td>
+                  <td>{userInfo.country}</td>
+                  <td>{userInfo.followers}</td>
+                  <td>
+                    <img
+                      src={userInfo.avatar}
+                      alt={userInfo.username}
+                      width="50"
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
     </div>
