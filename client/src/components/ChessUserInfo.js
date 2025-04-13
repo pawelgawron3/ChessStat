@@ -6,7 +6,6 @@ const ChessUserInfo = () => {
   const [userInfo, setUserInfo] = useState(null);
   const [error, setError] = useState("");
 
-  // Funkcja powinna być zdefiniowana wewnątrz komponentu
   const fetchUserInfo = async () => {
     try {
       const response = await axios.get(
@@ -29,7 +28,7 @@ const ChessUserInfo = () => {
         type="text"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
-        placeholder="Enter chess.com username"
+        placeholder="Enter username"
       />
       <button onClick={fetchUserInfo}>Get info</button>
 
@@ -39,10 +38,10 @@ const ChessUserInfo = () => {
         <div>
           <h2>User Info:</h2>
           <p>
-            <strong>Username:</strong> {userInfo.username}
+            <strong>Chess.com account:</strong> {userInfo.url}
           </p>
           <p>
-            <strong>Name:</strong> {userInfo.name}
+            <strong>Username:</strong> {userInfo.username}
           </p>
           <p>
             <strong>Country:</strong> {userInfo.country}
