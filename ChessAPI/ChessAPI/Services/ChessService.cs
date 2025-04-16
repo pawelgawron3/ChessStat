@@ -3,6 +3,7 @@
     public class ChessService : IChessService
     {
         private readonly HttpClient _httpClient;
+        private const string UserDataUrl= "https://api.chess.com/pub/player/";
         public ChessService(HttpClient httpClient)
         {
             _httpClient = httpClient;
@@ -11,7 +12,7 @@
         public async Task<HttpResponseMessage> GetUserData(string username)
 
         {
-            string url = $"https://api.chess.com/pub/player/{username}";
+            string url = UserDataUrl + username;
 
             var requestMessage = new HttpRequestMessage(HttpMethod.Get, url);
 

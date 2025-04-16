@@ -1,5 +1,6 @@
 ﻿using ChessAPI.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace ChessAPI.Controllers;
 
@@ -22,7 +23,9 @@ public class ChessController : ControllerBase
         if (response.IsSuccessStatusCode)
         {
             var userInfo = await response.Content.ReadAsStringAsync();
-            return Ok(userInfo);
+            var jsonInfo = JsonDocument.Parse(userInfo);
+
+            return Ok(jsonInfo);
         }
         else
         {
