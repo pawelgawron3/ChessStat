@@ -1,7 +1,6 @@
-﻿namespace ChessAPI.Services
+﻿namespace ChessAPI.Services;
+
+public interface IChessService
 {
-    public interface IChessService
-    {
-        public Task<HttpResponseMessage> GetUserData(string username);
-    }
+    public Task<HttpResponseMessage> GetUserData(string username);
 }
