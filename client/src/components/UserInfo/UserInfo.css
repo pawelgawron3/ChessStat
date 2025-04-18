@@ -2,6 +2,13 @@
   display: flex;
   justify-content: center;
 }
+.usernameButton:hover {
+  cursor: grab;
+}
+
+.temporary {
+  margin-left: 10px;
+}
 
 .table-container {
   margin-left: 20px;
@@ -19,6 +26,7 @@ td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: center;
+  background-color: #f2f2f2;
 }
 
 th {
