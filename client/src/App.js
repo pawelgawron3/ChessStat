@@ -4,7 +4,7 @@ import UserInfo from "./components/UserInfo/UserInfo";
 function App() {
   return (
     <div className="App">
-      <h1>Welcome to Chess Info App v1.0</h1>
+      <h1>Welcome to Chess Info App v1.1</h1>
       <UserInfo />
     </div>
   );

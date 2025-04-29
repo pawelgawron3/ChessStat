@@ -1,4 +1,6 @@
-﻿namespace ChessAPI.Services;
+﻿using ChessAPI.Models;
+
+namespace ChessAPI.Services;
 
 public interface IChessService
 {
@@ -8,5 +10,5 @@ public interface IChessService
 
     public Task<HttpResponseMessage> GetUserCountry(string username);
 
-    public Task<object?> GetUserInfo(string username);
+    public Task<ChessUser?> GetUserInfo(string username);
 }

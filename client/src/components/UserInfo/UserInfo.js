@@ -12,7 +12,6 @@ const ChessUserInfo = () => {
       const response = await axios.get(
         `https://localhost:7281/api/Chess/${username}`
       );
-      console.log(response);
       setUserInfo(response.data);
       setError("");
     } catch (ex) {
@@ -23,7 +22,7 @@ const ChessUserInfo = () => {
   };
 
   return (
-    <div>
+    <div className="temporary">
       <h1>Chess User Information</h1>
       <input
         type="text"
@@ -31,7 +30,9 @@ const ChessUserInfo = () => {
         onChange={(e) => setUsername(e.target.value)}
         placeholder="Enter username"
       />
-      <button onClick={fetchUserInfo}>Get info</button>
+      <button className="usernameButton" onClick={fetchUserInfo}>
+        Get info
+      </button>
 
       {error && <p style={{ color: "red" }}>{error}</p>}
 
@@ -44,27 +45,18 @@ const ChessUserInfo = () => {
             <table>
               <thead>
                 <tr>
-                  <th>URL</th>
+                  <th>Avatar</th>
                   <th>Username</th>
                   <th>Country</th>
+                  <th>FIDE</th>
                   <th>Followers</th>
-                  <th>Image</th>
+                  <th>Streamer</th>
+                  <th>Verified</th>
+                  <th>Rapid</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>
-                    <a
-                      href={userInfo.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {userInfo.url}
-                    </a>
-                  </td>
-                  <td>{userInfo.username}</td>
-                  <td>{userInfo.country}</td>
-                  <td>{userInfo.followers}</td>
                   <td>
                     <img
                       src={userInfo.avatar}
@@ -72,6 +64,13 @@ const ChessUserInfo = () => {
                       width="50"
                     />
                   </td>
+                  <td>{userInfo.username}</td>
+                  <td>{userInfo.country}</td>
+                  <td>{userInfo.fide}</td>
+                  <td>{userInfo.followers}</td>
+                  <td>{userInfo.streamer ? "✅" : "❌"}</td>
+                  <td>{userInfo.verified ? "✅" : "❌"}</td>
+                  <td>{userInfo.rapid.best.rating}</td>
                 </tr>
               </tbody>
             </table>
