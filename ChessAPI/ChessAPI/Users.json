@@ -178,5 +178,125 @@
     },
     "FIDE": 2882,
     "Country": "Norway"
+  },
+  {
+    "Username": "byniolus",
+    "Avatar": "https://images.chesscomfiles.com/uploads/v1/user/18283748.11266d99.200x200o.92e540d2ccbf.jpeg",
+    "Followers": 8610,
+    "Streamer": false,
+    "Verified": false,
+    "Rapid": {
+      "Last": {
+        "Rating": 2477,
+        "Date": "2025-02-17T19:12:03Z",
+        "Rd": 46
+      },
+      "Best": {
+        "Rating": 2528,
+        "Date": "2020-04-28T15:42:07Z",
+        "Game": "https://www.chess.com/game/live/108937181815"
+      },
+      "Record": {
+        "Win": 99,
+        "Loss": 31,
+        "Draw": 18
+      }
+    },
+    "Blitz": {
+      "Last": {
+        "Rating": 2856,
+        "Date": "2025-04-24T08:56:50Z",
+        "Rd": 30
+      },
+      "Best": {
+        "Rating": 2927,
+        "Date": "2025-02-12T18:26:15Z",
+        "Game": "https://www.chess.com/game/live/126472133369"
+      },
+      "Record": {
+        "Win": 5388,
+        "Loss": 2701,
+        "Draw": 827
+      }
+    },
+    "Bullet": {
+      "Last": {
+        "Rating": 2835,
+        "Date": "2025-04-24T14:27:06Z",
+        "Rd": 32
+      },
+      "Best": {
+        "Rating": 2975,
+        "Date": "2022-04-24T20:27:56Z",
+        "Game": "https://www.chess.com/game/live/106162308469"
+      },
+      "Record": {
+        "Win": 15923,
+        "Loss": 12473,
+        "Draw": 1633
+      }
+    },
+    "FIDE": 2489,
+    "Country": "Poland"
+  },
+  {
+    "Username": "byniolus",
+    "Avatar": "https://images.chesscomfiles.com/uploads/v1/user/18283748.11266d99.200x200o.92e540d2ccbf.jpeg",
+    "Followers": 8610,
+    "Streamer": false,
+    "Verified": false,
+    "Rapid": {
+      "Last": {
+        "Rating": 2477,
+        "Date": "2025-02-17T19:12:03Z",
+        "Rd": 46
+      },
+      "Best": {
+        "Rating": 2528,
+        "Date": "2020-04-28T15:42:07Z",
+        "Game": "https://www.chess.com/game/live/108937181815"
+      },
+      "Record": {
+        "Win": 99,
+        "Loss": 31,
+        "Draw": 18
+      }
+    },
+    "Blitz": {
+      "Last": {
+        "Rating": 2856,
+        "Date": "2025-04-24T08:56:50Z",
+        "Rd": 30
+      },
+      "Best": {
+        "Rating": 2927,
+        "Date": "2025-02-12T18:26:15Z",
+        "Game": "https://www.chess.com/game/live/126472133369"
+      },
+      "Record": {
+        "Win": 5388,
+        "Loss": 2701,
+        "Draw": 827
+      }
+    },
+    "Bullet": {
+      "Last": {
+        "Rating": 2835,
+        "Date": "2025-04-24T14:27:06Z",
+        "Rd": 32
+      },
+      "Best": {
+        "Rating": 2975,
+        "Date": "2022-04-24T20:27:56Z",
+        "Game": "https://www.chess.com/game/live/106162308469"
+      },
+      "Record": {
+        "Win": 15923,
+        "Loss": 12473,
+        "Draw": 1633
+      }
+    },
+    "FIDE": 2489,
+    "Country": "Poland"
   }
 ]

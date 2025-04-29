@@ -13,18 +13,23 @@ public class ChessService : IChessService
         _httpClient = httpClient;
     }
 
-    private async Task<JsonDocument?> GetJsonDoc(HttpResponseMessage response)
+    private async Task<T?> GetJsonDoc<T>(HttpResponseMessage response)
     {
         if (!response.IsSuccessStatusCode)
         {
             Console.WriteLine($"{response.StatusCode} - {response.ReasonPhrase}");   // Logowanie błędu
-            return null;
+            return default;
         }
         else
         {
             string content = await response.Content.ReadAsStringAsync();
-            var jsonInfo = JsonDocument.Parse(content);
-            return jsonInfo;
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+                AllowTrailingCommas = true
+            };
+            var deserialisedData = JsonSerializer.Deserialize<T>(content, options);
+            return deserialisedData;
         }
     }
 
@@ -36,34 +41,6 @@ public class ChessService : IChessService
         requestMessage.Headers.Add("User-Agent", "ChessInfoAPI/1.0 (http://localhost:7281)");   // Wymagane przez API chess.com
 
         return await _httpClient.SendAsync(requestMessage);
-    }
-    
-    private UserGames GetUserGames(JsonElement element)
-    {
-        UserGames userGames = new UserGames();
-
-        if(element.TryGetProperty("last", out var Last)){
-            userGames.Last.Rating = Last.GetProperty("rating").GetInt32();
-            long timestamp = Last.GetProperty("date").GetInt64();
-            userGames.Last.Date = DateTimeOffset.FromUnixTimeSeconds(timestamp).UtcDateTime;
-            userGames.Last.Rd = Last.GetProperty("rd").GetInt32();
-        }
-
-        if (element.TryGetProperty("best", out var Best))
-        {
-            userGames.Best.Rating = Best.GetProperty("rating").GetInt32();
-            long timestamp = Best.GetProperty("date").GetInt64();
-            userGames.Best.Date = DateTimeOffset.FromUnixTimeSeconds(timestamp).UtcDateTime;
-            userGames.Best.Game = Best.GetProperty("game").GetString()!;
-        }
-
-        if (element.TryGetProperty("record", out var Record))
-        {
-            userGames.Record.Win = Record.GetProperty("win").GetInt32();
-            userGames.Record.Loss = Record.GetProperty("loss").GetInt32();
-            userGames.Record.Draw = Record.GetProperty("draw").GetInt32();
-        }
-        return userGames;
     }
 
     public async Task<HttpResponseMessage> GetUserData(string username)
@@ -90,33 +67,30 @@ public class ChessService : IChessService
         var userDataResponse = await GetUserData(username);
         var userStatsResponse = await GetUserStats(username);
 
-        var userData = await GetJsonDoc(userDataResponse);
-        var userStats = await GetJsonDoc(userStatsResponse);
+        var userData = await GetJsonDoc<ChessUser>(userDataResponse);
+        var userStats = await GetJsonDoc<GamesData>(userStatsResponse);
 
         if (userData == null || userStats == null)
         {
             return null;
         }
 
-        string countryUrl = userData.RootElement.GetProperty("country").GetString()!;
+        var userCountryResponse = await GetUserCountry(userData.Country);
+        var userCountry = await GetJsonDoc<UserCountry>(userCountryResponse);
 
-        var userCountryResponse = await GetUserCountry(countryUrl);
-        var userCountry = await GetJsonDoc(userCountryResponse);
-
-        ChessUser? User = new ChessUser()
+        var chessUser = new ChessUser
         {
-            Username = userData.RootElement.GetProperty("username").GetString()!,
-            Avatar = userData.RootElement.GetProperty("avatar").GetString()!,
-            Followers = userData.RootElement.GetProperty("followers").GetInt32(),
-            Streamer = userData.RootElement.GetProperty("is_streamer").GetBoolean(),
-            Verified = userData.RootElement.GetProperty("verified").GetBoolean(),
-            Rapid = GetUserGames(userStats.RootElement.GetProperty("chess_rapid")),
-            Bullet = GetUserGames(userStats.RootElement.GetProperty("chess_bullet")),
-            Blitz = GetUserGames(userStats.RootElement.GetProperty("chess_blitz")),
-            FIDE = userStats.RootElement.GetProperty("fide").GetInt32(),
-            Country = userCountry?.RootElement.GetProperty("name").GetString() ?? "Unknow",
+            Username = userData.Username,
+            Avatar = userData.Avatar,
+            Followers = userData.Followers,
+            Streamer = userData.Streamer,
+            Verified = userData.Verified,
+            Rapid = userStats.ChessRapid,
+            Blitz = userStats.ChessBlitz,
+            Bullet = userStats.ChessBullet,
+            Country = userCountry?.Name ?? "Unknown"
         };
 
-        return User;
+        return chessUser;
     }
 }
