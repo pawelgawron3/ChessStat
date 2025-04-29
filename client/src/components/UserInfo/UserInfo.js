@@ -45,11 +45,14 @@ const ChessUserInfo = () => {
             <table>
               <thead>
                 <tr>
-                  <th>Image</th>
+                  <th>Avatar</th>
                   <th>Username</th>
                   <th>Country</th>
                   <th>FIDE</th>
                   <th>Followers</th>
+                  <th>Streamer</th>
+                  <th>Verified</th>
+                  <th>Rapid</th>
                 </tr>
               </thead>
               <tbody>
@@ -65,6 +68,9 @@ const ChessUserInfo = () => {
                   <td>{userInfo.country}</td>
                   <td>{userInfo.fide}</td>
                   <td>{userInfo.followers}</td>
+                  <td>{userInfo.streamer ? "✅" : "❌"}</td>
+                  <td>{userInfo.verified ? "✅" : "❌"}</td>
+                  <td>{userInfo.rapid.best.rating}</td>
                 </tr>
               </tbody>
             </table>
