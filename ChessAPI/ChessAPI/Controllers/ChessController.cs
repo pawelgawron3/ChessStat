@@ -1,6 +1,5 @@
 ﻿using ChessAPI.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Text.Json;
 
 namespace ChessAPI.Controllers;
 
@@ -9,6 +8,7 @@ namespace ChessAPI.Controllers;
 public class ChessController : ControllerBase
 {
     private IChessService _chessService;
+
     public ChessController(IChessService chessService)
     {
         _chessService = chessService;
@@ -17,19 +17,13 @@ public class ChessController : ControllerBase
     [HttpGet("{username}")]
     public async Task<IActionResult> GetUserInfo(string username)
     {
+        var userInfo = await _chessService.GetUserInfo(username);
 
-        var response = await _chessService.GetUserData(username);
-
-        if (response.IsSuccessStatusCode)
-        {
-            var userInfo = await response.Content.ReadAsStringAsync();
-            var jsonInfo = JsonDocument.Parse(userInfo);
-
-            return Ok(jsonInfo);
-        }
-        else
+        if (userInfo == null)
         {
             return NotFound(new { Message = $"User {username} not found!" });
         }
+
+        return Ok(userInfo);
     }
 }
