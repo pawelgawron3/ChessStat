@@ -24,7 +24,7 @@ public class ChessController : ControllerBase
 
         if (userInfo == null)
         {
-            return NotFound(new { Message = $"User {username} not found!" });
+            return NotFound($"User {username} not found!");
         }
 
         List<ChessUser> usersList = new List<ChessUser>();
@@ -44,9 +44,9 @@ public class ChessController : ControllerBase
             {
                 Console.WriteLine($"Error: {ex.Message}");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");  
+                Console.WriteLine($"Error: {ex.Message}");
             }
         }
 
