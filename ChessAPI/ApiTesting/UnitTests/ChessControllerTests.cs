@@ -4,7 +4,7 @@ using ChessAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 
-namespace ApiTesting;
+namespace ApiTesting.UnitTests;
 
 public class ChessControllerTests
 {

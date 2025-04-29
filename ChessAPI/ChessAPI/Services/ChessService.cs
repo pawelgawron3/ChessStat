@@ -37,12 +37,13 @@ public class ChessService : IChessService
 
         return await _httpClient.SendAsync(requestMessage);
     }
-    
+
     private UserGames GetUserGames(JsonElement element)
     {
         UserGames userGames = new UserGames();
 
-        if(element.TryGetProperty("last", out var Last)){
+        if (element.TryGetProperty("last", out var Last))
+        {
             userGames.Last.Rating = Last.GetProperty("rating").GetInt32();
             long timestamp = Last.GetProperty("date").GetInt64();
             userGames.Last.Date = DateTimeOffset.FromUnixTimeSeconds(timestamp).UtcDateTime;
