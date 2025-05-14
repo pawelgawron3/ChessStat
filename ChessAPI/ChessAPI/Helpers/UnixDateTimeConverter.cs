@@ -13,7 +13,15 @@ public class UnixDateTimeConverter : JsonConverter<DateTime>
 
     public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)
     {
-        long unixTime = ((DateTimeOffset)value).ToUnixTimeSeconds();
+        long unixTime;
+        try
+        {
+            unixTime = ((DateTimeOffset)value).ToUnixTimeSeconds();
+        }
+        catch
+        {
+            unixTime=default;
+        }
         writer.WriteNumberValue(unixTime);
     }
 }
