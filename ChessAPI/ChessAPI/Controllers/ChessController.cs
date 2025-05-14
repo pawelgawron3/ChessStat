@@ -21,7 +21,6 @@ public class ChessController : ControllerBase
     public async Task<IActionResult> GetUserInfo(string username)
     {
         var userInfo = await _chessService.GetUserInfo(username);
-
         return Ok(userInfo);
     }
 }
