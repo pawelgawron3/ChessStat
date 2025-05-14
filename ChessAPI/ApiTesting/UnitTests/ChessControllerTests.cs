@@ -35,7 +35,7 @@ public class ChessControllerTests
             .Setup(service => service.GetUserInfo(It.IsIn("nonexistentuser")))
             .ReturnsAsync((ChessUser)null);
         var controller = new ChessController(mockPlayerService.Object);
-        string errorMessage = "User nonexistentuser not found!";
+        string errorMessage = "User not found!";
 
         // Act
         var result = await controller.GetUserInfo("nonexistentuser");
