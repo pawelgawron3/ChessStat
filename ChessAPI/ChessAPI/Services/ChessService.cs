@@ -85,9 +85,9 @@ public class ChessService : IChessService
             Followers = userData.Followers,
             Streamer = userData.Streamer,
             Verified = userData.Verified,
-            Rapid = userStats.ChessRapid,
-            Blitz = userStats.ChessBlitz,
-            Bullet = userStats.ChessBullet,
+            Rapid = userStats.ChessRapid ?? new UserGames(),
+            Blitz = userStats.ChessBlitz ?? new UserGames(),
+            Bullet = userStats.ChessBullet ?? new UserGames(),
             Country = userCountry?.Name ?? "Unknown"
         };
 

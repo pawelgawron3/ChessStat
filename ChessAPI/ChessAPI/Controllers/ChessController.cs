@@ -21,6 +21,11 @@ public class ChessController : ControllerBase
     public async Task<IActionResult> GetUserInfo(string username)
     {
         var userInfo = await _chessService.GetUserInfo(username);
+        if (userInfo == null)
+        {
+            return NotFound("User not found!");
+        }
+
         return Ok(userInfo);
     }
 }

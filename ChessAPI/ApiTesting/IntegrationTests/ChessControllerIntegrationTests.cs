@@ -30,14 +30,14 @@ public class ChessControllerIntegrationTests : IClassFixture<WebApplicationFacto
         Assert.Contains(username, content);
     }
 
-    //[Fact]
-    //public async Task GetUserInfo_ReturnsNotFound_WhenUserDoesNotExist()
-    //{
-    //    // Arrange
-    //    var username = "nonexistentuser";
-    //    // Act
-    //    var response = await _client.GetAsync($"/api/Chess/{username}");
-    //    // Assert
-    //    Assert.Equal(System.Net.HttpStatusCode.NotFound, response.StatusCode);
-    //}
+    [Fact]
+    public async Task GetUserInfo_ReturnsNotFound_WhenUserDoesNotExist()
+    {
+        // Arrange
+        var username = "'";
+        // Act
+        var response = await _client.GetAsync($"/api/Chess/{username}");
+        // Assert
+        Assert.Equal(System.Net.HttpStatusCode.NotFound, response.StatusCode);
+    }
 }
