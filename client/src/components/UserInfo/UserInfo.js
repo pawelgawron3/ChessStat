@@ -4,20 +4,34 @@ import "./UserInfo.css";
 
 const ChessUserInfo = () => {
   const [username, setUsername] = useState("");
-  const [userInfo, setUserInfo] = useState(null);
+  const [users, setUsers] = useState([]);
   const [error, setError] = useState("");
+
+  const toEmoji = (boolValue) => (boolValue ? "✅" : "❌");
 
   const fetchUserInfo = async () => {
     try {
       const response = await axios.get(
         `https://localhost:7281/api/Chess/${username}`
       );
-      setUserInfo(response.data);
+
+      const newUser = response.data;
+
+      setUsers((prevUsers) => {
+        const exists = prevUsers.some((u) => u.username === newUser.username);
+        if (!exists) {
+          return [...prevUsers, newUser];
+        } else {
+          setError("This user already exists in the table!");
+          return prevUsers;
+        }
+      });
+
       setError("");
+      setUsername("");
     } catch (ex) {
       console.error(ex);
       setError("User not found or error occurred!");
-      setUserInfo(null);
     }
   };
 
@@ -36,7 +50,7 @@ const ChessUserInfo = () => {
 
       {error && <p style={{ color: "red" }}>{error}</p>}
 
-      {userInfo && (
+      {users && (
         <div>
           <div className="userInfoHeader">
             <h1>User Info:</h1>
@@ -52,26 +66,24 @@ const ChessUserInfo = () => {
                   <th>Followers</th>
                   <th>Streamer</th>
                   <th>Verified</th>
-                  <th>Rapid</th>
+                  <th>Rapid current rating</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>
-                    <img
-                      src={userInfo.avatar}
-                      alt={userInfo.username}
-                      width="50"
-                    />
-                  </td>
-                  <td>{userInfo.username}</td>
-                  <td>{userInfo.country}</td>
-                  <td>{userInfo.fide}</td>
-                  <td>{userInfo.followers}</td>
-                  <td>{userInfo.streamer ? "✅" : "❌"}</td>
-                  <td>{userInfo.verified ? "✅" : "❌"}</td>
-                  <td>{userInfo.rapid.best.rating}</td>
-                </tr>
+                {users.map((user) => (
+                  <tr key={user.username}>
+                    <td>
+                      <img src={user.avatar} alt={user.username} width="50" />
+                    </td>
+                    <td>{user.username}</td>
+                    <td>{user.country}</td>
+                    <td>{user.fide}</td>
+                    <td>{user.followers}</td>
+                    <td>{toEmoji(user.streamer)}</td>
+                    <td>{toEmoji(user.verified)}</td>
+                    <td>{user.rapid.last.rating}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
