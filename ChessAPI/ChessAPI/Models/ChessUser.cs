@@ -19,6 +19,8 @@ public class ChessUser
     [JsonPropertyName("verified")]
     public bool Verified { get; set; }
 
+    public int FIDE { get; set; }
+
     public UserGames Rapid { get; set; } = new UserGames();
     public UserGames Blitz { get; set; } = new UserGames();
     public UserGames Bullet { get; set; } = new UserGames();

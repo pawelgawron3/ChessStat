@@ -85,6 +85,7 @@ public class ChessService : IChessService
             Followers = userData.Followers,
             Streamer = userData.Streamer,
             Verified = userData.Verified,
+            FIDE = userStats.FIDE,
             Rapid = userStats.ChessRapid ?? new UserGames(),
             Blitz = userStats.ChessBlitz ?? new UserGames(),
             Bullet = userStats.ChessBullet ?? new UserGames(),
