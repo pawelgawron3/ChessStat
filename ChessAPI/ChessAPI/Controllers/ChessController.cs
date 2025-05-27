@@ -1,6 +1,4 @@
-﻿using System.Text.Json;
-using ChessAPI.Models;
-using ChessAPI.Services;
+﻿using ChessAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ChessAPI.Controllers;
@@ -10,7 +8,6 @@ namespace ChessAPI.Controllers;
 public class ChessController : ControllerBase
 {
     private IChessService _chessService;
-    private readonly string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Users.json");
 
     public ChessController(IChessService chessService)
     {
