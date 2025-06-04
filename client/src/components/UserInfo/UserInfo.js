@@ -34,7 +34,10 @@ const ChessUserInfo = () => {
       setError("User not found or error occurred!");
     }
   };
-
+  const RemoveUser = (username)=>{
+    const players=users.filter(x=>x.username!==username);
+    setUsers(players)
+  }
   return (
     <div className="temporary">
       <h1>Chess User Information</h1>
@@ -67,6 +70,7 @@ const ChessUserInfo = () => {
                   <th>Streamer</th>
                   <th>Verified</th>
                   <th>Rapid current rating</th>
+                  <th>Remove</th>
                 </tr>
               </thead>
               <tbody>
@@ -82,6 +86,9 @@ const ChessUserInfo = () => {
                     <td>{toEmoji(user.streamer)}</td>
                     <td>{toEmoji(user.verified)}</td>
                     <td>{user.rapid.last.rating}</td>
+                    <td>
+                      <button onClick={()=>RemoveUser(user.username)}>X</button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
