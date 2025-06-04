@@ -1,7 +1,8 @@
-.App {
-  text-align: center;
-}
 
+.app-header{
+  text-align: center;
+  color: white;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -22,6 +23,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  text-align: center; /* Dodano tutaj tylko dla headera */
 }
 
 .App-link {

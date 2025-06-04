@@ -1,49 +1,374 @@
+/* Modern Chess User Info Styles */
+.temporary {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.temporary h1:first-of-type {
+  text-align: center;
+  color: white;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  letter-spacing: -0.02em;
+}
+
+/* Input Section - usunięcie białego diva */
+.temporary > div:first-of-type {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  width: 100%;
+  max-width: 500px;
+}
+
+.temporary input[type="text"] {
+  width: 100%;
+  max-width: 400px;
+  padding: 1rem 1.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  font-size: 1.1rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  outline: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.temporary input[type="text"]:focus {
+  border-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.temporary input[type="text"]::placeholder {
+  color: #64748b;
+  font-weight: 400;
+}
+
+.usernameButton {
+  width: 100%;
+  max-width: 400px;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.usernameButton:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.usernameButton:active {
+  transform: translateY(0);
+}
+
+.usernameButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.usernameButton:hover::before {
+  left: 100%;
+}
+
+/* Error Message */
+.temporary p[style*="color: red"] {
+  background: rgba(220, 38, 38, 0.1);
+  color: #fca5a5;
+  padding: 1rem;
+  border-radius: 12px;
+  margin-top: 1rem;
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* User Info Section */
 .userInfoHeader {
+  text-align: center;
+  margin: 2rem 0;
+  width: 100%;
+}
+
+.userInfoHeader h1 {
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Table Container - wyśrodkowana i pełna szerokość */
+.table-container {
+  width: 100%;
+  max-width: 1400px;
+  padding: 0;
   display: flex;
   justify-content: center;
-}
-.usernameButton:hover {
-  cursor: grab;
+  overflow-x: auto;
 }
 
-.temporary {
-  margin-left: 10px;
-}
-
-.table-container {
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
+/* Table Styles - wyśrodkowana */
 table {
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
-}
-
-th,
-td {
-  border: 1px solid #ddd;
-  padding: 8px;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(15px);
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
   text-align: center;
-  background-color: #f2f2f2;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 th {
-  background-color: #f2f2f2;
-  font-weight: bold;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  color: black;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
 }
 
+th:first-child {
+  border-top-left-radius: 12px;
+}
+
+th:last-child {
+  border-top-right-radius: 12px;
+}
+
+td {
+  padding: 1.5rem 1rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  background: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  color: #334155;
+  transition: all 0.3s ease;
+}
+
+tr:hover td {
+  background: rgba(255, 255, 255, 0.95);
+  transform: scale(1.01);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius: 12px;
+}
+
+tr:last-child td:last-child {
+  border-bottom-right-radius: 12px;
+}
+
+/* Avatar Images */
+img {
+  border-radius: 50%;
+  object-fit: cover;
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+img:hover {
+  transform: scale(1.15);
+  border-color: white;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Remove Button */
+td button {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+  min-width: 40px;
+}
+
+td button:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4);
+}
+
+td button:active {
+  transform: translateY(0) scale(1);
+}
+
+/* Links */
 td a {
-  color: #007bff;
+  color: #667eea;
   text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
 td a:hover {
-  text-decoration: underline;
+  color: #5a67d8;
+  text-decoration: none;
 }
 
-img {
-  border-radius: 20px;
-  object-fit: cover;
+td a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  transition: width 0.3s ease;
+}
+
+td a:hover::after {
+  width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .table-container {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .temporary {
+    padding: 1rem;
+  }
+  
+  .temporary h1:first-of-type {
+    font-size: 2rem;
+  }
+  
+  .table-container {
+    padding: 0;
+    overflow-x: auto;
+  }
+  
+  table {
+    font-size: 0.9rem;
+    min-width: 800px;
+  }
+  
+  th, td {
+    padding: 1rem 0.5rem;
+  }
+  
+  img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .temporary h1:first-of-type {
+    font-size: 1.5rem;
+  }
+  
+  th, td {
+    padding: 0.75rem 0.25rem;
+    font-size: 0.8rem;
+  }
+  
+  img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* Loading Animation */
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.loading {
+  animation: pulse 2s infinite;
+}
+
+/* Smooth Animations */
+* {
+  box-sizing: border-box;
+}
+
+.table-container {
+  animation: slideInUp 0.6s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom Scrollbar */
+.table-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
 }

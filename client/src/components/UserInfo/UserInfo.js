@@ -18,6 +18,11 @@ const ChessUserInfo = () => {
   const toEmoji = (boolValue) => (boolValue ? "✅" : "❌");
 
   const fetchUserInfo = async () => {
+    if (!username.trim()) {
+      setError("Please enter a username!");
+      return;
+    }
+
     try {
       const response = await axios.get(
         `https://localhost:7281/api/Chess/${username}`
@@ -38,31 +43,42 @@ const ChessUserInfo = () => {
       setError("User not found or error occurred!");
     }
   };
+
   const RemoveUser = (username) => {
     const players = users.filter((x) => x.username !== username);
     setUsers(players);
   };
+
   useEffect(() => {
     localStorage.setItem("users", JSON.stringify(users));
   }, [users]);
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      fetchUserInfo();
+    }
+  };
+
   return (
     <div className="temporary">
       <h1>Chess User Information</h1>
-      <input
-        type="text"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        placeholder="Enter username"
-      />
-      <button className="usernameButton" onClick={fetchUserInfo}>
-        Get info
-      </button>
+      
+      <div>
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          onKeyDown={handleKeyPress}
+          placeholder="Enter username"
+        />
+        <button className="usernameButton" onClick={fetchUserInfo}>
+          Get info
+        </button>
+        {error && <p style={{ color: "red" }}>{error}</p>}
+      </div>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
-
-      {users && (
-        <div>
+      {users.length > 0 && (
+        <>
           <div className="userInfoHeader">
             <h1>User Info:</h1>
           </div>
@@ -77,7 +93,7 @@ const ChessUserInfo = () => {
                   <th>Followers</th>
                   <th>Streamer</th>
                   <th>Verified</th>
-                  <th>Rapid current rating</th>
+                  <th>Rapid Rating</th>
                   <th>Remove</th>
                 </tr>
               </thead>
@@ -100,7 +116,7 @@ const ChessUserInfo = () => {
                     <td>{user.rapid.last.rating}</td>
                     <td>
                       <button onClick={() => RemoveUser(user.username)}>
-                        X
+                        ✕
                       </button>
                     </td>
                   </tr>
@@ -108,7 +124,7 @@ const ChessUserInfo = () => {
               </tbody>
             </table>
           </div>
-        </div>
+        </>
       )}
     </div>
   );

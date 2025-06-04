@@ -5,9 +5,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
 }
 
-body::before {
+/*body::before {
   content: "";
   position: absolute;
   top: 0;
@@ -20,7 +22,7 @@ body::before {
   opacity: 0.75;
   z-index: -1;
 }
-
+*/
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
