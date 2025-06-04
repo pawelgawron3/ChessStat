@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./UserInfo.css";
 
 const ChessUserInfo = () => {
   const [username, setUsername] = useState("");
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState(() => {
+    try {
+      const stored = localStorage.getItem("users");
+      const parsed = stored ? JSON.parse(stored) : [];
+      return parsed;
+    } catch {
+      return [];
+    }
+  });
   const [error, setError] = useState("");
 
   const toEmoji = (boolValue) => (boolValue ? "✅" : "❌");
@@ -17,16 +25,12 @@ const ChessUserInfo = () => {
 
       const newUser = response.data;
 
-      setUsers((prevUsers) => {
-        const exists = prevUsers.some((u) => u.username === newUser.username);
-        if (!exists) {
-          return [...prevUsers, newUser];
-        } else {
-          setError("This user already exists in the table!");
-          return prevUsers;
-        }
-      });
+      if (users.some((u) => u.username === newUser.username)) {
+        setError("This user already exists in the table!");
+        return;
+      }
 
+      setUsers([...users, newUser]);
       setError("");
       setUsername("");
     } catch (ex) {
@@ -38,6 +42,10 @@ const ChessUserInfo = () => {
     const players = users.filter((x) => x.username !== username);
     setUsers(players);
   };
+  useEffect(() => {
+    localStorage.setItem("users", JSON.stringify(users));
+  }, [users]);
+
   return (
     <div className="temporary">
       <h1>Chess User Information</h1>
