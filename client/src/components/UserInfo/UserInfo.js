@@ -17,9 +17,16 @@ const ChessUserInfo = () => {
 
   const toEmoji = (boolValue) => (boolValue ? "✅" : "❌");
 
+  const clearErrorMessage = () => {
+    setTimeout(() => {
+      setError("");
+    }, 3000);
+  };
+
   const fetchUserInfo = async () => {
     if (!username.trim()) {
       setError("Please enter a username!");
+      clearErrorMessage();
       return;
     }
 
@@ -32,6 +39,7 @@ const ChessUserInfo = () => {
 
       if (users.some((u) => u.username === newUser.username)) {
         setError("This user already exists in the table!");
+        clearErrorMessage();
         return;
       }
 
@@ -41,6 +49,7 @@ const ChessUserInfo = () => {
     } catch (ex) {
       console.error(ex);
       setError("User not found or error occurred!");
+      clearErrorMessage();
     }
   };
 
@@ -54,15 +63,15 @@ const ChessUserInfo = () => {
   }, [users]);
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       fetchUserInfo();
     }
   };
 
   return (
-    <div className="temporary">
+    <div className="app-main">
       <h1>Chess User Information</h1>
-      
+
       <div>
         <input
           type="text"
@@ -93,7 +102,9 @@ const ChessUserInfo = () => {
                   <th>Followers</th>
                   <th>Streamer</th>
                   <th>Verified</th>
-                  <th>Rapid Rating</th>
+                  <th>Rapid rating</th>
+                  <th>Blitz rating</th>
+                  <th>Bullet rating</th>
                   <th>Remove</th>
                 </tr>
               </thead>
@@ -102,7 +113,7 @@ const ChessUserInfo = () => {
                   <tr key={user.username}>
                     <td>
                       {user.avatar ? (
-                        <img src={user.avatar} alt={user.username} width="50" />
+                        <img src={user.avatar} alt={user.username} />
                       ) : (
                         "❌"
                       )}
@@ -114,9 +125,11 @@ const ChessUserInfo = () => {
                     <td>{toEmoji(user.streamer)}</td>
                     <td>{toEmoji(user.verified)}</td>
                     <td>{user.rapid.last.rating}</td>
+                    <td>{user.blitz.last.rating}</td>
+                    <td>{user.bullet.last.rating}</td>
                     <td>
                       <button onClick={() => RemoveUser(user.username)}>
-                        ✕
+                        <span className="knight">&#9816;</span>
                       </button>
                     </td>
                   </tr>

@@ -1,15 +1,15 @@
 /* Modern Chess User Info Styles */
-.temporary {
+.app-main {
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 2rem;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.temporary h1:first-of-type {
+.app-main h1:first-of-type {
   text-align: center;
   color: white;
   font-size: 3rem;
@@ -20,7 +20,7 @@
 }
 
 /* Input Section - usunięcie białego diva */
-.temporary > div:first-of-type {
+.app-main > div:first-of-type {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,7 +30,7 @@
   max-width: 500px;
 }
 
-.temporary input[type="text"] {
+.app-main input[type="text"] {
   width: 100%;
   max-width: 400px;
   padding: 1rem 1.5rem;
@@ -44,13 +44,13 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.temporary input[type="text"]:focus {
+.app-main input[type="text"]:focus {
   border-color: rgba(255, 255, 255, 0.8);
   box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
 }
 
-.temporary input[type="text"]::placeholder {
+.app-main input[type="text"]::placeholder {
   color: #64748b;
   font-weight: 400;
 }
@@ -85,13 +85,18 @@
 }
 
 .usernameButton::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
   transition: left 0.5s;
 }
 
@@ -100,7 +105,7 @@
 }
 
 /* Error Message */
-.temporary p[style*="color: red"] {
+.app-main p[style*="color: red"] {
   background: rgba(220, 38, 38, 0.1);
   color: #fca5a5;
   padding: 1rem;
@@ -223,10 +228,10 @@ img:hover {
 td button {
   background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
   color: white;
+  font-size: 1.5rem;
   border: none;
   border-radius: 8px;
   padding: 0.5rem 1rem;
-  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
@@ -238,8 +243,17 @@ td button:hover {
   box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4);
 }
 
+td button:hover .knight {
+  transform: rotate(-25deg);
+}
+
 td button:active {
   transform: translateY(0) scale(1);
+}
+
+td button .knight {
+  display: inline-block;
+  transition: transform 0.3s ease;
 }
 
 /* Links */
@@ -257,7 +271,7 @@ td a:hover {
 }
 
 td a::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 0;
   height: 2px;
@@ -279,28 +293,29 @@ td a:hover::after {
 }
 
 @media (max-width: 768px) {
-  .temporary {
+  .app-main {
     padding: 1rem;
   }
-  
-  .temporary h1:first-of-type {
+
+  .app-main h1:first-of-type {
     font-size: 2rem;
   }
-  
+
   .table-container {
     padding: 0;
     overflow-x: auto;
   }
-  
+
   table {
     font-size: 0.9rem;
     min-width: 800px;
   }
-  
-  th, td {
+
+  th,
+  td {
     padding: 1rem 0.5rem;
   }
-  
+
   img {
     width: 40px;
     height: 40px;
@@ -308,15 +323,16 @@ td a:hover::after {
 }
 
 @media (max-width: 480px) {
-  .temporary h1:first-of-type {
+  .app-main h1:first-of-type {
     font-size: 1.5rem;
   }
-  
-  th, td {
+
+  th,
+  td {
     padding: 0.75rem 0.25rem;
     font-size: 0.8rem;
   }
-  
+
   img {
     width: 30px;
     height: 30px;
@@ -325,9 +341,15 @@ td a:hover::after {
 
 /* Loading Animation */
 @keyframes pulse {
-  0% { opacity: 1; }
-  50% { opacity: 0.5; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .loading {
