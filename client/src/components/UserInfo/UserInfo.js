@@ -34,10 +34,10 @@ const ChessUserInfo = () => {
       setError("User not found or error occurred!");
     }
   };
-  const RemoveUser = (username)=>{
-    const players=users.filter(x=>x.username!==username);
-    setUsers(players)
-  }
+  const RemoveUser = (username) => {
+    const players = users.filter((x) => x.username !== username);
+    setUsers(players);
+  };
   return (
     <div className="temporary">
       <h1>Chess User Information</h1>
@@ -77,7 +77,11 @@ const ChessUserInfo = () => {
                 {users.map((user) => (
                   <tr key={user.username}>
                     <td>
-                      <img src={user.avatar} alt={user.username} width="50" />
+                      {user.avatar ? (
+                        <img src={user.avatar} alt={user.username} width="50" />
+                      ) : (
+                        "❌"
+                      )}
                     </td>
                     <td>{user.username}</td>
                     <td>{user.country}</td>
@@ -87,7 +91,9 @@ const ChessUserInfo = () => {
                     <td>{toEmoji(user.verified)}</td>
                     <td>{user.rapid.last.rating}</td>
                     <td>
-                      <button onClick={()=>RemoveUser(user.username)}>X</button>
+                      <button onClick={() => RemoveUser(user.username)}>
+                        X
+                      </button>
                     </td>
                   </tr>
                 ))}
