@@ -1,0 +1,6 @@
+@ChessAPI_HostAddress = https://localhost:7281
+
+GET {{ChessAPI_HostAddress}}/api/Chess/big_chunguspl
+Accept: application/json
+
+###
