@@ -1,0 +1,22 @@
+services:
+  backend:
+    image: pkrzysiekk/chess_api
+    ports:
+      - 7281:5001
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+  frontend:
+    image: pkrzysiekk/chess_front
+    ports:
+      - 3000:3000
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+  watchtower:
+    image: containrrr/watchtower
+    environment:
+      -  WATCHTOWER_POLL_INTERVAL=5
+      - WATCHTOWER_LABEL_ENABLE=true
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+ 
