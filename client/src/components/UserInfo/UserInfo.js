@@ -32,7 +32,7 @@ const ChessUserInfo = () => {
 
     try {
       const response = await axios.get(
-        `https://localhost:7281/api/Chess/${username}`
+        `http://localhost:7281/api/Chess/${username}`
       );
 
       const newUser = response.data;

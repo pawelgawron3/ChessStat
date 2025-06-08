@@ -6,7 +6,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLocalhost", policy =>
     {
-        policy.WithOrigins("http://localhost:3000") // React app dzia³a na tym porcie
+        policy.WithOrigins("http://localhost:3000") // React app dziaï¿½a na tym porcie
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
@@ -37,7 +37,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+app.Run("http://0.0.0.0:5001");
 
 public partial class Program
 { }
