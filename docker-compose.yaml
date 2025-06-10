@@ -2,7 +2,7 @@ services:
   backend:
     image: pkrzysiekk/chess_api
     ports:
-      - 7281:5001
+      - 7281:7281
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
   frontend:
